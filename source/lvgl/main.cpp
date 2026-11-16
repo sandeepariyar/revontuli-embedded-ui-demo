@@ -728,6 +728,7 @@ int main() {
         data->state=pointer(2) ? LV_INDEV_STATE_PRESSED : LV_INDEV_STATE_RELEASED;
     });
     buildUi();
+    showPage(0);
     emscripten_set_main_loop([] { lv_timer_handler(); },0,true);
 }
 #else
@@ -761,6 +762,7 @@ int main(int argc, char **argv) {
     if (!display) return 1;
     lv_windows_acquire_pointer_indev(display);
     buildUi();
+    showPage(0);
     const HWND window = lv_windows_get_display_window_handle(display);
     while (IsWindow(window)) {
         lv_timer_handler();
