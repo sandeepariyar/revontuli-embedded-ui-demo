@@ -1,10 +1,12 @@
 # Revontuli — Interactive EV Cabin UI
 
-**Sandeep Pariyar · Developer / Designer**
+![Revontuli cabin at night. Sandeep Pariyar, Developer and Designer.](docs/readme-hero.jpg)
 
 A rear-seat touchscreen concept for a luxury EV, inspired by Finnish winter light. Explore the original design next to a working **LVGL + C++** implementation, both running in your browser.
 
-**[Open the live side-by-side demo →](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)** · No installation required
+[<img src="docs/readme-launch.png" width="310" height="54" alt="Launch the live side-by-side demo">](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)
+
+[Web design and LVGL + C++ side by side](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/) · No installation required
 
 [![Comfort Seat screen comparison, with the web design on the left and LVGL on the right](docs/comparison-seat.png)](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)
 
