@@ -2,7 +2,9 @@
 
 Sandeep Pariyar · Developer / Designer
 
-[Open the side-by-side browser demo](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)
+**[Launch the live demo →](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)** · No installation required
+
+[![Revontuli cabin design preview. Click to open the web and LVGL comparison.](docs/revontuli-preview.png)](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)
 
 Explore Home, Comfort, Atmosphere, Media and Cabin in the approved HTML design and the LVGL + C++ implementation. The LVGL build runs locally in the browser through WebAssembly. Both interfaces simulate vehicle state.
 
