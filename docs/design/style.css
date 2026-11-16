@@ -317,3 +317,13 @@ body[data-theme="day"] :is(.title-dot,.explore-title>span),body[data-theme="day"
  body{height:auto;min-height:100dvh;overflow:auto;align-items:flex-start}
 }
 .device:has(#screen[data-tab="Comfort"] .scene.seat){height:min(638px,100dvh)}
+
+/* The mobile comparison supplies the phone viewport as the device frame. */
+html.mobile-device,html.mobile-device body{margin:0;padding:0;width:100%;height:100%;overflow:hidden}
+html.mobile-device .intro{display:none}
+html.mobile-device body .device{width:100%!important;height:100dvh!important;border-radius:0;box-shadow:none}
+html.mobile-device #screen{min-height:0}
+html.mobile-device #screen:has(.scene.seat){display:flex;flex-direction:column}
+html.mobile-device #screen:has(.scene.seat)>*{flex-shrink:0}
+html.mobile-device #screen .scene.seat{flex:1 0 150px;max-height:360px}
+html.mobile-device #screen .scene.seat canvas{object-fit:contain}

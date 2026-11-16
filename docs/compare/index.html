@@ -40,7 +40,13 @@
 <script>
 const ref=document.querySelector('#reference');
 ref.title='Original Revontuli web interface';
-ref.src='../design/';
+const phoneViewport=matchMedia('(max-width:700px)');
+function fitWebDevice(){
+  ref.contentDocument?.documentElement.classList.toggle('mobile-device',phoneViewport.matches);
+}
+ref.addEventListener('load',fitWebDevice);
+phoneViewport.addEventListener('change',fitWebDevice);
+ref.src='../design/?v=phone-fit-2';
 const walkthrough=document.querySelector('#walkthrough');
 const video=walkthrough.querySelector('video');
 document.querySelector('#watch').onclick=()=>{walkthrough.showModal();video.play().catch(()=>{});};
