@@ -4,29 +4,24 @@
 .intro{max-width:980px;display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,285px);gap:24px;align-items:center;padding:12px 0 20px}.kicker{color:#a7c1b6;font-size:.78rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}.intro h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.03;letter-spacing:-.045em;margin:.3em 0}.device-target{background:#142220;border:1px solid #32433d;border-radius:16px;padding:16px 20px}.device-target h2{margin:0;font-size:1rem}.device-target p{margin:.45em 0;color:#bed0c8;font-size:.9rem}.video-button{display:inline-flex;align-items:center;gap:10px;background:#3ddc97;color:#092419;border:0;border-radius:13px;padding:11px 17px;font:inherit;font-weight:700;cursor:pointer}.video-button:hover{background:#6ae5ad}button:focus-visible,a:focus-visible{outline:2px solid #a1eaca;outline-offset:4px}dialog{border:1px solid #3d514a;border-radius:18px;background:#0b1414;color:#edf1e7;padding:16px;width:min(420px,calc(100vw - 48px))}dialog::backdrop{background:#000b}dialog header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}dialog button{color:inherit;background:#253633;border:0;border-radius:8px;padding:7px 10px;cursor:pointer}video{display:block;width:100%;max-height:72dvh;background:#050909}@media(max-width:700px){.intro{grid-template-columns:1fr;gap:12px}}
 </style>
 <style>
-.mobile-launch,.app-toolbar{display:none}
 @media(max-width:700px){
-  .mobile-launch{display:inline-flex;margin:10px 0;background:#243631;color:#edf1e7}
-  body.app-open{overflow:hidden}
-  body.app-open #comparison{position:fixed;inset:0;z-index:5;display:grid;grid-template-rows:auto minmax(0,1fr);gap:0;overflow:hidden;background:#080e10}
-  body.app-open .app-toolbar{display:flex;align-items:center;gap:7px;padding:8px max(8px,env(safe-area-inset-right)) 8px max(8px,env(safe-area-inset-left));background:#142220}
-  .app-toolbar button{border:0;border-radius:9px;padding:9px 12px;font:inherit;color:#edf1e7;background:#253633;min-height:44px}
-  .app-toolbar button[aria-pressed=true]{background:#3ddc97;color:#092419}
-  #leave-app{margin-left:auto}
-  body.app-open #comparison>section{display:none;min-height:0;overflow:hidden}
-  body.app-open #comparison[data-app=web] #web-preview,body.app-open #comparison[data-app=lvgl] #lvgl-preview{display:grid;place-items:center}
-  body.app-open #comparison h2{display:none}
-  body.app-open #reference{width:100%;height:100%;border-radius:0;aspect-ratio:auto}
-  body.app-open #lvgl-preview canvas{width:min(100vw,calc((100dvh - 60px) * 480 / 638));height:auto;max-height:100%;border-radius:0}
+  body{margin:0;overflow:hidden;background:#080e10}
+  body>.intro,body>#comparison~section,#comparison>.app-toolbar,#comparison h2{display:none!important}
+  body #comparison{position:fixed;inset:0;display:block;overflow:hidden;background:#080e10}
+  body #comparison>section{display:none}
+  body #comparison[data-app=web] #web-preview{display:block;width:100%;height:100%}
+  body #comparison[data-app=lvgl] #lvgl-preview{display:grid;width:100%;height:100%;place-items:center}
+  body #comparison #reference{width:100%;height:100%;border-radius:0;aspect-ratio:auto}
+  body #comparison #lvgl-preview canvas{width:min(100vw,calc(100dvh * 480 / 638));height:auto;border-radius:0}
 }
 </style>
+
 <header class="intro">
   <div>
     <p class="kicker"><a href="../">Portfolio</a> · Sandeep Pariyar, Developer / Designer</p>
     <h1>Revontuli</h1>
     <p>An EV cabin touchscreen for rear passengers. Try the original web design alongside the LVGL + C++ implementation, running in your browser through WebAssembly.</p>
     <button id="watch" class="video-button" type="button"><span aria-hidden="true">▶</span> Watch the 11-second walkthrough</button>
-    <button id="open-app" class="video-button mobile-launch" type="button">Open full-screen app</button>
   </div>
   <section class="device-target" aria-labelledby="target-heading">
     <h2 id="target-heading">Intended device</h2>
@@ -41,7 +36,7 @@
   </video>
   <p>Home, seat cooling, climate airflow, and the rear window. Silent recording of the running LVGL build.</p>
 </dialog>
-<main id="comparison" data-app="web"><div class="app-toolbar" role="group" aria-label="Full-screen preview"><button type="button" data-app-choice="web" aria-pressed="true">Web</button><button type="button" data-app-choice="lvgl" aria-pressed="false">LVGL + C++</button><button type="button" id="leave-app">Exit preview</button></div><section id="web-preview"><h2>Approved web</h2><iframe id="reference" title="Original Revontuli web interface"></iframe></section><section id="lvgl-preview"><h2>LVGL + C++ · WebAssembly</h2><canvas width="480" height="638" aria-label="Revontuli LVGL touchscreen preview"></canvas></section></main><section><h2>What this demonstrates</h2><p>The browser runs LVGL widgets and the C++ controller in WebAssembly. Reusable PNG control skins and icons, JPEG cabin artwork and short frame sequences give the design a practical path to an embedded display.</p><p><strong>Measured browser build:</strong> 4.61 MiB of packed assets and 443 KiB of WebAssembly. <strong>Example MCU budget:</strong> a 480 × 40 RGB565 draw buffer uses 37.5 KiB, or 598.1 KiB for one full 480 × 638 buffer. These estimates exclude image decoding, caches, fonts, and application RAM. Firmware fit and performance depend on the target board and display driver.</p><p><a href="../seat/">C++ seat inspector and additional memory estimates</a> · <a href="https://github.com/sandeepariyar/revontuli-embedded-ui-demo">Source on GitHub</a></p></section>
+<main id="comparison" data-app="web"><section id="web-preview"><h2>Approved web</h2><iframe id="reference" title="Original Revontuli web interface"></iframe></section><section id="lvgl-preview"><h2>LVGL + C++ · WebAssembly</h2><canvas width="480" height="638" aria-label="Revontuli LVGL touchscreen preview"></canvas></section></main><section><h2>What this demonstrates</h2><p>The browser runs LVGL widgets and the C++ controller in WebAssembly. Reusable PNG control skins and icons, JPEG cabin artwork and short frame sequences give the design a practical path to an embedded display.</p><p><strong>Measured browser build:</strong> 4.61 MiB of packed assets and 443 KiB of WebAssembly. <strong>Example MCU budget:</strong> a 480 × 40 RGB565 draw buffer uses 37.5 KiB, or 598.1 KiB for one full 480 × 638 buffer. These estimates exclude image decoding, caches, fonts, and application RAM. Firmware fit and performance depend on the target board and display driver.</p><p><a href="../seat/">C++ seat inspector and additional memory estimates</a> · <a href="https://github.com/sandeepariyar/revontuli-embedded-ui-demo">Source on GitHub</a></p></section>
 <script>
 const ref=document.querySelector('#reference');
 ref.title='Original Revontuli web interface';
@@ -51,17 +46,7 @@ const video=walkthrough.querySelector('video');
 document.querySelector('#watch').onclick=()=>{walkthrough.showModal();video.play().catch(()=>{});};
 walkthrough.addEventListener('close',()=>video.pause());
 const comparison=document.querySelector('#comparison');
-const openApp=document.querySelector('#open-app');
-const choices=[...document.querySelectorAll('[data-app-choice]')];
-openApp.onclick=()=>{document.body.classList.add('app-open');choices.find(b=>b.dataset.appChoice===comparison.dataset.app).focus();};
-function exitPreview(){if(document.body.classList.contains('app-open')){document.body.classList.remove('app-open');openApp.focus();}}
-document.querySelector('#leave-app').onclick=exitPreview;
-choices.forEach(button=>button.onclick=()=>{
-  comparison.dataset.app=button.dataset.appChoice;
-  choices.forEach(choice=>choice.setAttribute('aria-pressed',String(choice===button)));
-});
-window.addEventListener('keydown',event=>{if(event.key==='Escape')exitPreview();});
-matchMedia('(max-width:700px)').addEventListener('change',event=>{if(!event.matches)exitPreview();});
+if(new URLSearchParams(location.search).get('app')==='lvgl') comparison.dataset.app='lvgl';
 window.seatPointer=[0,0,0];
 var Module={locateFile:(name, prefix)=>prefix+name+"?v=home-motion"};
 const c=document.querySelector('canvas');
