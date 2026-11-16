@@ -24,6 +24,8 @@ lv_obj_t *seatPage, *climatePage, *climateTab, *seatTab, *airflow, *temperature,
 lv_obj_t *airButtons[3], *climateSeats[2], *acButton, *autoButton;
 lv_obj_t *fanValue;
 lv_obj_t *extraPage, *heading, *navigation[5], *extraImage, *extraValue;
+lv_obj_t *homeHeatOverlay = nullptr;
+int lightingFrame = 0;
 int activePage = 1;
 int track = 0, progress = 84, windowTarget = -1, windowSeat = 0;
 int lightSpeed = 1, lightZones = 7;
@@ -313,12 +315,23 @@ void updateExtraImage() {
         std::snprintf(path, sizeof(path), "A:/skins/cabin/roof-%d.jpg", state.roof == 1 ? 3 : 9);
     } else if (state.light && lightZones) {
         int level = (state.brightness * 9 + 50) / 100;
-        if (activePage == 2 && beat) level = std::max(0, level - (3 - frame));
+        if (level && (activePage == 0 || activePage == 2)) {
+            const int pulse[] = {0, 1, 2, 1};
+            level = std::max(0, level - (beat ? pulse[lightingFrame] : pulse[lightingFrame] / 2));
+        }
         std::snprintf(path, sizeof(path), "A:/skins/cabin/light-%s-%d.jpg", presetFiles[state.scene], level);
     } else {
         std::snprintf(path, sizeof(path), "A:/skins/cabin/cabin.jpg");
     }
     lv_image_set_src(extraImage, path);
+    if (homeHeatOverlay) {
+        if (s.heat == 0) lv_obj_add_flag(homeHeatOverlay, LV_OBJ_FLAG_HIDDEN);
+        else {
+            lv_obj_remove_flag(homeHeatOverlay, LV_OBJ_FLAG_HIDDEN);
+            std::snprintf(path, sizeof(path), "A:/skins/cabin/home-heat-%d-%d.png", s.heat, frame);
+            lv_image_set_src(homeHeatOverlay, path);
+        }
+    }
 }
 
 lv_obj_t *extraCard(int x, int y, const char *name, int width = 444) {
@@ -435,11 +448,14 @@ void extraSwitch(const char *name, int x, int y, Action action, bool enabled) {
 }
 void refreshExtra() {
     lv_obj_clean(extraPage);
-    extraImage = extraValue = extraSlider = nullptr;
+    extraImage = extraValue = extraSlider = homeHeatOverlay = nullptr;
     const auto &state = control.state();
     const auto &s = state.seats[seat];
     if (activePage == 0) {
         extraHero(0);
+        homeHeatOverlay = lv_image_create(extraPage);
+        lv_obj_set_pos(homeHeatOverlay, 320, 20);
+        updateExtraImage();
         icon(extraPage, "snow", 18, 130);
         label(extraPage, "Oulu  -4 C  Light snow", 48, 134);
         label(extraPage, "Preview connected", 18, 172, 0xbacac3);
@@ -649,6 +665,7 @@ void buildUi() {
     lv_timer_create([](lv_timer_t *) {
         frame = (frame + 1) % 4;
         if (activePage == 1 && !climate && effect) paintEffect();
+        if (activePage == 0 && control.state().seats[seat].heat) updateExtraImage();
     }, 150, nullptr);
     lv_timer_create([](lv_timer_t *) {
         if (activePage != 1 || !climate) return;
@@ -688,7 +705,10 @@ void buildUi() {
         }
     }, 1000, nullptr);
     lv_timer_create([](lv_timer_t *timer) {
-        if (activePage == 2 && beat) updateExtraImage();
+        if (activePage == 0 || activePage == 2) {
+            lightingFrame = (lightingFrame + 1) % 4;
+            if (control.state().light) updateExtraImage();
+        }
         const uint32_t rates[] = {360, 210, 100};
         lv_timer_set_period(timer, rates[lightSpeed]);
     }, 210, nullptr);

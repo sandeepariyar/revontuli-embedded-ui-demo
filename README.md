@@ -26,7 +26,7 @@ The original interface uses HTML, CSS, and JavaScript. The embedded UI study use
 
 | Resource | Size |
 | --- | ---: |
-| Browser asset pack, measured | 4.43 MiB |
+| Browser asset pack, measured | 4,61 MiB |
 | Browser WebAssembly binary, measured | 443 KiB |
 | 480 × 40 RGB565 partial draw buffer, estimated | 37.5 KiB |
 | 480 × 638 RGB565 full framebuffer, estimated | 598.1 KiB |

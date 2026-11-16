@@ -35,3 +35,11 @@ for name in ("aurora", "lounge", "relax", "club", "cinema"):
 for name in ("window", "shade", "roof"):
     for index in range(10):
         export(source / "sequences" / name / f"{index:02}.webp", f"{name}-{index}", (480, 208))
+for level in (1, 2, 3):
+    with Image.open(source / "sequences" / "home-heat" / f"{level * 3:02}.webp") as glow:
+        glow = ImageOps.fit(glow.convert("RGBA"), (480, 208), Image.Resampling.LANCZOS)
+    for index, frame in enumerate((0, 2, 5, 7)):
+        with Image.open(source / "sequences" / f"home-heat-fx-{level}" / f"{frame:02}.webp") as effect:
+            effect = ImageOps.fit(effect.convert("RGBA"), (480, 208), Image.Resampling.LANCZOS)
+        Image.alpha_composite(glow, effect).crop((320, 20, 480, 208)).save(
+            out / f"home-heat-{level}-{index}.png", optimize=True)
