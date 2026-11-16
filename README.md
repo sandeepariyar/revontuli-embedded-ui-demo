@@ -38,3 +38,7 @@ The buffer estimates cover pixel storage only. Image decoding, fonts, caches, an
 [![Original Revontuli cabin interface and portfolio introduction](docs/revontuli-preview.png)](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/design/)
 
 [Explore the original design](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/design/) · [Inspect the C++ seat controller](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/seat/) · [LVGL build instructions](source/lvgl/README.md)
+
+## Copyright
+
+© 2026 Sandeep Pariyar. All rights reserved. See the [copyright notice](LICENSE.md) and [LVGL license](docs/compare/LVGL-LICENSE.txt).
