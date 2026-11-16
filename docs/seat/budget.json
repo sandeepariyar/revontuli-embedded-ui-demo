@@ -1,0 +1,21 @@
+{
+  "groups": [
+    {
+      "name": "Chair JPEGs",
+      "count": 25,
+      "bytes": 155325.0
+    },
+    {
+      "name": "Transparent effect frames",
+      "count": 28,
+      "bytes": 12876.0
+    },
+    {
+      "name": "Mirrored right-seat assets",
+      "count": 53,
+      "bytes": 259226.0
+    }
+  ],
+  "wasm": 430350,
+  "pack": 427427
+}
