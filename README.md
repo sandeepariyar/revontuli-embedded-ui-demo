@@ -4,7 +4,7 @@
 
 A rear-seat touchscreen concept for a luxury EV, inspired by Finnish winter light. Explore the original design next to a working **LVGL + C++** implementation, both running in your browser.
 
-[<img src="docs/readme-launch.png" width="310" height="54" alt="Launch the live side-by-side demo">](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)
+[<img src="docs/readme-launch.gif" width="372" height="65" alt="Launch the live side-by-side demo">](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)
 
 [Web design and LVGL + C++ side by side](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/) · No installation required
 
