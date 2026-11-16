@@ -169,14 +169,22 @@ function drawScene(){const canvas=$('#sceneCanvas');if(!canvas)return;const a=se
 
 }
 
+function applySeatCommand(key,value){
+ const a=seat(),core=globalThis.revontuliSeatCore;
+ if(!core){a[key]=value;if(value&&(key==='heat'||key==='cool'))a[key==='heat'?'cool':'heat']=0;return}
+ const result=core._seat_command(S.seat==='Rear left'?0:1,['heat','cool','massage','recline'].indexOf(key),Number(value));
+ if(result<0)return;
+ Object.assign(a,{heat:result&3,cool:(result>>2)&3,massage:!!(result&16),recline:result>>5});
+ if(window.parent!==window)window.parent.dispatchEvent(new CustomEvent('revontuli-seat',{detail:{key,seat:S.seat,heat:a.heat,cool:a.cool,massage:a.massage,recline:a.recline}}));
+}
 function windowMove(to){clearInterval(windowTimer);windowMotion=to?'open':'close';const targetSeat=seat();render();windowTimer=setInterval(()=>{const diff=to-targetSeat.window;targetSeat.window=Math.max(0,Math.min(100,targetSeat.window+Math.sign(diff)*Math.min(5,Math.abs(diff))));const range=$('[data-range="window"]'),value=$('#value-window');if(range){range.value=targetSeat.window;range.style.setProperty('--pct',targetSeat.window+'%')}if(value){value.innerHTML=T(Math.round(targetSeat.window)+'%');rasterize(value)}const homeState=$('.home-window-state');if(homeState){homeState.innerHTML=T((to?'Opening ':'Closing ')+Math.round(targetSeat.window)+'%');rasterize(homeState)}lastPaint='';drawScene();if(targetSeat.window===to){clearInterval(windowTimer);windowMotion=null;if(S.tab==='Cabin'||S.tab==='Home')render();toast(to?'Window open · simulated':'Window closed · simulated')}},80)}
 
-document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const a=seat();if(b.dataset.tab){if(S.tab===b.dataset.tab)return;S.tab=b.dataset.tab;$('#screen').scrollTop=0;render();microMotion($('#screen'),[{opacity:.65,transform:'translateY(4px)'},{opacity:1,transform:'translateY(0)'}],180);microMotion($('#nav .on .icon'),[{transform:'translateY(2px)'},{transform:'translateY(-1px)'}],180);return}if(b.dataset.scene){let n=b.dataset.scene;if(n==='relax'){S.scene='relax';S.brightness=55;S.beat=false;a.massage=true;S.seatPreview='massage';toast('Relax · soft cyan light and gentle massage')}else{S.scene=n;S.brightness=({aurora:85,lounge:70,club:100,cinema:35})[n]||65;S.beat=n==='club'}S.light=true;render();return}if(b.dataset.toggle){const k=b.dataset.toggle;if(k==='massage'){a.massage=!a.massage;S.seatPreview='massage'}else{S[k]=!S[k];if(k==='ac')S.auto=false;if(k==='auto'&&S.auto){S.ac=true;if(!a.fan)a.fan=3}if(k==='privacy')a.shade=S.privacy?100:0}render();return}const act=b.dataset.action;if(!act)return;if(act==='theme'){theme=theme==='day'?'night':'day';try{localStorage.setItem('revontuli-theme',theme)}catch{}render();return}if(act.startsWith('level-')){const [,key,level]=act.split('-');a[key]=Number(level);if(a[key])a[key==='heat'?'cool':'heat']=0;S.seatPreview=key;render();return}if(act.startsWith('seat-')){clearInterval(windowTimer);windowMotion=null;const changed=S.seat!==act.slice(5);S.seat=act.slice(5);render();if(changed&&S.tab==='Comfort'&&S.comfortMode==='Seat'&&!matchMedia('(prefers-reduced-motion: reduce)').matches){$('#sceneCanvas').animate([{opacity:0},{opacity:1}],{duration:260,easing:'ease-out'})}return}if(act.startsWith('output-')){S.output=act.slice(7);render();return}if(act==='mute'){if(S.volume){S.lastVolume=S.volume;S.volume=0}else S.volume=S.lastVolume||45;render();return}if(act.startsWith('focus-')){S.focus=act.slice(6);render();return}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const a=seat();if(b.dataset.tab){if(S.tab===b.dataset.tab)return;S.tab=b.dataset.tab;$('#screen').scrollTop=0;render();microMotion($('#screen'),[{opacity:.65,transform:'translateY(4px)'},{opacity:1,transform:'translateY(0)'}],180);microMotion($('#nav .on .icon'),[{transform:'translateY(2px)'},{transform:'translateY(-1px)'}],180);return}if(b.dataset.scene){let n=b.dataset.scene;if(n==='relax'){S.scene='relax';S.brightness=55;S.beat=false;applySeatCommand('massage',true);S.seatPreview='massage';toast('Relax · soft cyan light and gentle massage')}else{S.scene=n;S.brightness=({aurora:85,lounge:70,club:100,cinema:35})[n]||65;S.beat=n==='club'}S.light=true;render();return}if(b.dataset.toggle){const k=b.dataset.toggle;if(k==='massage'){applySeatCommand('massage',!a.massage);S.seatPreview='massage'}else{S[k]=!S[k];if(k==='ac')S.auto=false;if(k==='auto'&&S.auto){S.ac=true;if(!a.fan)a.fan=3}if(k==='privacy')a.shade=S.privacy?100:0}render();return}const act=b.dataset.action;if(!act)return;if(act==='theme'){theme=theme==='day'?'night':'day';try{localStorage.setItem('revontuli-theme',theme)}catch{}render();return}if(act.startsWith('level-')){const [,key,level]=act.split('-');applySeatCommand(key,Number(level));S.seatPreview=key;render();return}if(act.startsWith('seat-')){clearInterval(windowTimer);windowMotion=null;const changed=S.seat!==act.slice(5);S.seat=act.slice(5);render();if(changed&&S.tab==='Comfort'&&S.comfortMode==='Seat'&&!matchMedia('(prefers-reduced-motion: reduce)').matches){$('#sceneCanvas').animate([{opacity:0},{opacity:1}],{duration:260,easing:'ease-out'})}return}if(act.startsWith('output-')){S.output=act.slice(7);render();return}if(act==='mute'){if(S.volume){S.lastVolume=S.volume;S.volume=0}else S.volume=S.lastVolume||45;render();return}if(act.startsWith('focus-')){S.focus=act.slice(6);render();return}
 
  if(act.startsWith('comfort-')){S.comfortMode=act.slice(8);S.seatPreview='recline';$('#screen').scrollTop=0}
  else if(act==='temp-up'||act==='temp-down')a.temp=Math.max(16,Math.min(30,a.temp+(act==='temp-up'?.5:-.5)));
 
- else if(act.startsWith('cycle-')){const k=act.slice(6);a[k]=(a[k]+1)%4;if(a[k])a[k==='heat'?'cool':'heat']=0;S.seatPreview=k}
+ else if(act.startsWith('cycle-')){const k=act.slice(6);applySeatCommand(k,(a[k]+1)%4);S.seatPreview=k}
 
  else if(act==='play')S.playing=!S.playing;
 
@@ -202,8 +210,8 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
 
  else if(act==='save-position'){try{localStorage.setItem('revontuli-seat-'+S.seat,JSON.stringify({recline:a.recline}));toast('Seat position saved on this device')}catch{toast('Storage is unavailable')}}
 
- else if(act==='recall-position'){try{const saved=JSON.parse(localStorage.getItem('revontuli-seat-'+S.seat)||'null');if(saved&&Number.isFinite(saved.recline)){a.recline=Math.max(0,Math.min(100,saved.recline));S.seatPreview='recline';toast('Saved recline restored')}else toast('No saved position for this seat')}catch{toast('Saved position unavailable')}}
- else if(act==='reset-seat'){S.seats[S.seat]=initialSeat();S.seatPreview='heat';toast('Comfort settings reset')}
+ else if(act==='recall-position'){try{const saved=JSON.parse(localStorage.getItem('revontuli-seat-'+S.seat)||'null');if(saved&&Number.isFinite(saved.recline)){applySeatCommand('recline',Math.round(Math.max(0,Math.min(100,saved.recline))));S.seatPreview='recline';toast('Saved recline restored')}else toast('No saved position for this seat')}catch{toast('Saved position unavailable')}}
+ else if(act==='reset-seat'){S.seats[S.seat]=initialSeat();if(globalThis.revontuliSeatCore){applySeatCommand('heat',2);applySeatCommand('massage',false);applySeatCommand('recline',0)}S.seatPreview='heat';toast('Comfort settings reset')}
 
  else if(act==='profile')toast('Revontuli · local image-based prototype');
 
@@ -211,7 +219,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
 
 });
 
-document.addEventListener('input',e=>{if(!e.target.dataset.range)return;const k=e.target.dataset.range,v=Number(e.target.value);if(k in seat()){seat()[k]=v;if(k==='fan')S.auto=false;if(k==='recline')S.seatPreview=k;if(k==='heat'||k==='cool')S.seatPreview=k;if(k==='window'){clearInterval(windowTimer);windowMotion=null}}else S[k]=v;e.target.style.setProperty('--pct',((v-Number(e.target.min))/(Number(e.target.max)-Number(e.target.min))*100)+'%');const label=$('#value-'+k);if(label){label.innerHTML=T(v+(k==='fan'?'':'%'));rasterize(label)}if(k==='progress'){$('#elapsed').innerHTML=T(time(v));rasterize($('#elapsed'))}lastPaint='';drawScene()});
+document.addEventListener('input',e=>{if(!e.target.dataset.range)return;const k=e.target.dataset.range,v=Number(e.target.value);if(k in seat()){if(k==='recline')applySeatCommand(k,v);else seat()[k]=v;if(k==='fan')S.auto=false;if(k==='recline')S.seatPreview=k;if(k==='heat'||k==='cool')S.seatPreview=k;if(k==='window'){clearInterval(windowTimer);windowMotion=null}}else S[k]=v;e.target.style.setProperty('--pct',((v-Number(e.target.min))/(Number(e.target.max)-Number(e.target.min))*100)+'%');const label=$('#value-'+k);if(label){label.innerHTML=T(v+(k==='fan'?'':'%'));rasterize(label)}if(k==='progress'){$('#elapsed').innerHTML=T(time(v));rasterize($('#elapsed'))}lastPaint='';drawScene()});
 
 document.addEventListener('change',e=>{if(e.target.dataset.range)render();});
 

@@ -2,86 +2,57 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Revontuli · LVGL Seat demo</title>
+<title>Revontuli — Interactive Seat Comfort &amp; C++ Controller</title>
 <style>
-body{margin:0;background:#0b1414;color:#edf1e7;font:16px/1.5 system-ui}main{max-width:1050px;margin:auto;padding:24px;display:grid;grid-template-columns:1fr minmax(260px,480px);gap:32px}canvas{display:block;width:100%;height:auto;border-radius:18px;touch-action:none}a{color:#9be3c1}p{color:#bed0c8}@media(max-width:730px){main{grid-template-columns:1fr;max-width:480px}}
-main{display:block}header{max-width:680px}.comparison{display:grid;grid-template-columns:repeat(2,minmax(0,480px));gap:24px;margin:28px 0}figure{margin:0;min-width:0}figcaption{font-weight:650;margin-bottom:10px}.comparison iframe,.comparison canvas{display:block;width:100%;aspect-ratio:3/5;height:auto;border:0;border-radius:18px;background:#080e10}.budget{padding:24px;background:#152221;border-radius:18px}.budget h2{margin-top:0}table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:9px 4px;border-bottom:1px solid #31433e}td:last-child,th:last-child{text-align:right}select{background:#0b1414;color:#edf1e7;padding:6px;margin-left:8px}.budget output{font-weight:bold}.note{font-size:14px}@media(max-width:730px){.comparison{grid-template-columns:1fr}.budget{padding:16px}}
+*{box-sizing:border-box}body{margin:0;background:#0b1414;color:#edf1e7;font:15px/1.6 system-ui}main{max-width:1030px;margin:auto;padding:24px;display:grid;grid-template-columns:minmax(0,480px) minmax(0,1fr);gap:32px;align-items:start}a{color:#9be3c1}h1{font-size:clamp(30px,5vw,48px);line-height:1.1;margin:.4em 0}p{color:#bed0c8}iframe{display:block;width:100%;height:800px;border:0;border-radius:18px;background:#080e10}section{background:#152221;padding:18px;border-radius:14px;margin:16px 0}section h2{font-size:18px;margin:0}dt{font-weight:650}dd{margin:0 0 8px;color:#bed0c8}output{display:block;color:#9be3c1;min-height:3em}select{background:#0b1414;color:#edf1e7;padding:5px}@media(max-width:780px){main{grid-template-columns:1fr;max-width:528px;padding:14px}iframe{height:min(800px,100dvh)}}
 </style>
 <main>
-<header><a href="../">← Revontuli</a><h1>Comfort → Seat</h1><p>Compare the approved design with the working LVGL and C++ port. Try Cooling 2 and Rear right in both. The port currently differs in typography, controls and scene placement.</p><p id="status" role="status">Loading the LVGL demo…</p></header>
-<div class="comparison">
-  <figure><figcaption>Approved web design</figcaption><iframe id="reference" title="Approved Revontuli Comfort Seat screen"></iframe></figure>
-  <figure><figcaption>LVGL + C++ · WebAssembly</figcaption><canvas width="480" height="800" aria-label="Interactive Revontuli seat controller"></canvas></figure>
-</div>
-<section class="budget" aria-labelledby="budget-title">
-  <h2 id="budget-title">Memory budget</h2>
-  <h3>Measured · browser build files</h3>
-  <table><thead><tr><th scope="col">File group</th><th scope="col">Size</th></tr></thead><tbody id="measured"><tr><td colspan="2">Loading measurements…</td></tr></tbody></table>
-  <p class="note">File sizes are on disk before HTTP compression. The asset pack includes the mirrored copies and the three asset groups above. The WebAssembly binary is reported separately.</p>
-  <h3>Estimated · 480 × 800 embedded display</h3>
-  <p><label>RGB565 draw buffer<select id="buffer"><option value="40">40-row partial buffer</option><option value="800">One full framebuffer</option><option value="1600">Two full framebuffers</option></select></label></p>
-  <table><tbody>
-    <tr><th scope="row">Selected display buffer</th><td id="buffer-size"></td></tr>
-    <tr><th scope="row">One 240 × 240 RGB565 chair</th><td>112.5 KiB</td></tr>
-    <tr><th scope="row">One 90 × 128 RGBA overlay</th><td>45.0 KiB</td></tr>
-    <tr><th scope="row">Illustrative subtotal</th><td><output id="total"></output></td></tr>
-  </tbody></table>
-  <p class="note">A planning estimate, excluding widgets, fonts, decoder scratch space, caching and application memory. Partial buffering also depends on the display controller and driver. Board fit and runtime performance still need target verification.</p>
-</section>
+  <iframe id="reference" title="Original Revontuli interactive cabin"></iframe>
+  <aside>
+    <a href="../">← Revontuli portfolio</a>
+    <h1>Seat comfort, from UI to C++</h1>
+    <p>The original Revontuli interface. Try a heat or cooling level, toggle massage, or move the recline slider to see the confirmed C++ state.</p>
+    <section>
+      <h2>Live controller</h2>
+      <output id="trace" aria-live="polite">Loading C++ controller…</output>
+    </section>
+    <section>
+      <h2>Embedded asset budget</h2>
+      <dl><dt>Chair frames · measured</dt><dd>151.7 KiB across 25 JPEGs</dd><dt>Effect frames · measured</dt><dd>12.6 KiB across 28 cropped PNGs</dd><dt>C++ seat controller · measured</dt><dd>3.0 KiB WebAssembly binary</dd></dl>
+      <label>480 × 800 RGB565 target buffer
+        <select id="buffer"><option value="40">40 rows</option><option value="800">Full frame</option><option value="1600">Double buffer</option></select>
+      </label>
+      <p>Estimated buffer, decoded chair and overlay: <strong id="memory"></strong></p>
+      <p>The image sizes describe the embedded asset set. RAM is a planning estimate and excludes widgets, fonts and decoder workspace.</p>
+    </section>
+    <p>The browser renders the approved design and runs the seat controller in WebAssembly. The native LVGL and Qt Quick Ultralite ports are available in the <a href="../downloads/revontuli-source.zip">source package</a> as engineering studies.</p>
+  </aside>
 </main>
+<script src="seat-core.js"></script>
 <script>
 const reference = document.querySelector('#reference');
-reference.addEventListener('load', () => {
-    const doc = reference.contentDocument;
-    doc?.querySelector('[data-tab="Comfort"]')?.click();
-    doc?.querySelector('[data-action="comfort-Seat"]')?.click();
-});
-reference.src = '../design/';
-const kib = bytes => (bytes / 1024).toFixed(1) + ' KiB';
+const trace = document.querySelector('#trace');
 const buffer = document.querySelector('#buffer');
 function updateBudget() {
-    const bytes = 480 * Number(buffer.value) * 2;
-    document.querySelector('#buffer-size').textContent = kib(bytes);
-    document.querySelector('#total').textContent = kib(bytes + 240 * 240 * 2 + 90 * 128 * 4);
+    document.querySelector('#memory').textContent =
+        ((480 * Number(buffer.value) * 2 + 240 * 240 * 2 + 90 * 128 * 4) / 1024).toFixed(1) + ' KiB';
 }
 buffer.addEventListener('change', updateBudget);
 updateBudget();
-fetch('budget.json').then(response => {
-    if (!response.ok) throw new Error('Measurements unavailable');
-    return response.json();
-}).then(budget => {
-    const tbody = document.querySelector('#measured');
-    tbody.replaceChildren();
-    const groups = budget.groups.map(group => [group.name + ' (' + group.count + ' files)', group.bytes]);
-    for (const [label, size] of [...groups, ['Total asset pack', budget.pack], ['WebAssembly binary', budget.wasm]]) {
-        const row = tbody.insertRow();
-        const heading = document.createElement('th');
-        heading.scope = 'row';
-        heading.textContent = label;
-        row.append(heading);
-        row.insertCell().textContent = kib(size);
-    }
-}).catch(() => { document.querySelector('#measured td').textContent = 'Measurements unavailable.'; });
-window.seatPointer = [0, 0, 0];
-const canvas = document.querySelector('canvas');
-function updatePointer(event) {
-    const rect = canvas.getBoundingClientRect();
-    seatPointer[0] = Math.max(0, Math.min(479, Math.floor((event.clientX - rect.left) * 480 / rect.width)));
-    seatPointer[1] = Math.max(0, Math.min(799, Math.floor((event.clientY - rect.top) * 800 / rect.height)));
-}
-canvas.addEventListener('pointerdown', event => {
-    canvas.setPointerCapture(event.pointerId);
-    updatePointer(event);
-    seatPointer[2] = 1;
+window.addEventListener('revontuli-seat', event => {
+    const s = event.detail;
+    trace.textContent = s.seat + ' · ' + s.key + ' confirmed · heat ' + s.heat +
+        ' · cool ' + s.cool + ' · massage ' + (s.massage ? 'on' : 'off') + ' · recline ' + s.recline + '%';
 });
-canvas.addEventListener('pointermove', updatePointer);
-for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
-    canvas.addEventListener(type, () => { seatPointer[2] = 0; });
-}
-var Module = {
-    onRuntimeInitialized() { document.querySelector('#status').textContent = 'Ready'; },
-    onAbort() { document.querySelector('#status').textContent = 'The demo could not start. Try refreshing the page.'; }
-};
+const core = createRevontuliCore().catch(() => null);
+reference.addEventListener('load', async () => {
+    const controller = await core;
+    reference.contentWindow.revontuliSeatCore = controller;
+    const doc = reference.contentDocument;
+    doc.querySelector('#nav [data-tab="Comfort"]')?.click();
+    doc.querySelector('[data-action="comfort-Seat"]')?.click();
+    trace.textContent = controller ? 'C++ ready. Select a seat control.' : 'C++ unavailable. Design controls remain interactive.';
+});
+reference.src = '../design/';
 </script>
-<script async src="revontuli-lvgl.js"></script>
 </html>
