@@ -8,9 +8,9 @@ A rear-seat touchscreen concept for a luxury EV, inspired by Finnish winter ligh
 
 [Web design and LVGL + C++ side by side](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/) · No installation required
 
-[![Comfort Seat screen comparison, with the web design on the left and LVGL on the right](docs/comparison-seat.png)](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)
+[![Revontuli Home comparison, with the web design on the left and LVGL on the right](docs/comparison-home.png)](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)
 
-*Comfort → Seat. Original web design on the left, LVGL rendering with a C++ controller on the right.*
+*Home on both implementations. Original web design on the left, LVGL and C++ on the right.*
 
 ## Try it
 
@@ -32,6 +32,10 @@ The original interface uses HTML, CSS, and JavaScript. The embedded UI study use
 | 480 × 638 RGB565 full framebuffer, estimated | 598.1 KiB |
 
 The buffer estimates cover pixel storage only. Image decoding, fonts, caches, and application state add to runtime memory. Firmware fit, touch latency, and frame rate need verification on a selected board.
+
+## Comfort → Seat
+
+[![Comfort Seat screen comparison, original web design and LVGL](docs/comparison-seat.png)](https://sandeepariyar.github.io/revontuli-embedded-ui-demo/compare/)
 
 ## Design reference
 
