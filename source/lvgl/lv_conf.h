@@ -13,4 +13,5 @@
 #define LV_USE_TJPGD 1
 #define LV_USE_LOG 1
 #define LV_FONT_MONTSERRAT_26 1
+#define LV_FONT_MONTSERRAT_12 1
 #define LV_MEM_SIZE (1024U * 1024U)

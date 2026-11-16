@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Revontuli — Interactive EV Cabin | Web and LVGL + C++</title>
+<style>body{background:#0b1414;color:#edf1e7;font:16px system-ui;margin:24px}main{display:flex;gap:20px;flex-wrap:wrap}iframe,canvas{width:min(480px,calc(100vw - 48px));aspect-ratio:480/638;height:auto;border:0;border-radius:18px;display:block}a{color:#9be3c1}p{max-width:72ch}main section{min-width:0}iframe{height:min(638px,calc((100vw - 48px) * 638 / 480))}canvas{touch-action:none}</style>
+<h1>Revontuli — Interactive EV Cabin</h1><p><a href="../">← Portfolio</a> · Sandeep Pariyar, Developer / Designer</p><p>Explore five cabin screens in both implementations. Try Cooling 2, adjust the fan, or open a rear window. Each preview has its own state.</p>
+<main><section><h2>Approved web</h2><iframe id="reference" title="Approved seat screen"></iframe></section><section><h2>LVGL + C++ · WebAssembly</h2><canvas width="480" height="638"></canvas></section></main><section><h2>What this demonstrates</h2><p>The browser runs LVGL widgets and the C++ controller in WebAssembly. Reusable PNG control skins and icons, JPEG cabin artwork and short frame sequences give the design a practical path to an embedded display.</p><p><strong>Measured browser build:</strong> 4.43 MiB of packed assets and 443 KiB of WebAssembly. <strong>Example MCU budget:</strong> a 480 × 40 RGB565 draw buffer uses 37.5 KiB, or 598.1 KiB for one full 480 × 638 buffer. These estimates exclude image decoding, caches, fonts, and application RAM. Firmware fit and performance depend on the target board and display driver.</p><p><a href="../seat/">C++ seat inspector and additional memory estimates</a> · <a href="https://github.com/sandeepariyar/revontuli-embedded-ui-demo">Source on GitHub</a></p></section>
+<script>
+const ref=document.querySelector('#reference');
+ref.onload=()=>{const doc=ref.contentDocument;doc.querySelector('#nav [data-tab="Comfort"]')?.click();doc.querySelector('[data-action="comfort-Seat"]')?.click();};
+ref.src='../design/';
+window.seatPointer=[0,0,0];
+const c=document.querySelector('canvas');
+function move(e){const r=c.getBoundingClientRect();seatPointer[0]=Math.floor((e.clientX-r.left)*c.width/r.width);seatPointer[1]=Math.floor((e.clientY-r.top)*c.height/r.height);}
+c.onpointerdown=e=>{c.setPointerCapture(e.pointerId);move(e);seatPointer[2]=1};
+c.onpointermove=move;
+c.onpointerup=c.onpointercancel=c.onlostpointercapture=()=>seatPointer[2]=0;
+</script><script src="revontuli-lvgl.js"></script></html>

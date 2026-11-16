@@ -316,3 +316,4 @@ body[data-theme="day"] :is(.title-dot,.explore-title>span),body[data-theme="day"
 @media(min-width:851px) and (max-height:620px){
  body{height:auto;min-height:100dvh;overflow:auto;align-items:flex-start}
 }
+.device:has(#screen[data-tab="Comfort"] .scene.seat){height:min(638px,100dvh)}

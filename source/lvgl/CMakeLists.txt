@@ -10,10 +10,15 @@ add_subdirectory("${LVGL_SOURCE_DIR}" lvgl)
 add_executable(revontuli-lvgl main.cpp)
 target_link_libraries(revontuli-lvgl PRIVATE lvgl)
 if(EMSCRIPTEN)
+    file(GLOB_RECURSE demo_assets CONFIGURE_DEPENDS
+        "${CMAKE_CURRENT_SOURCE_DIR}/../mcu/assets/*"
+        "${CMAKE_CURRENT_SOURCE_DIR}/assets/*")
+    set_property(TARGET revontuli-lvgl APPEND PROPERTY LINK_DEPENDS "${demo_assets}")
     target_link_options(revontuli-lvgl PRIVATE
         "-sALLOW_MEMORY_GROWTH=1" "-sFORCE_FILESYSTEM=1"
         "SHELL:--preload-file \"${CMAKE_CURRENT_SOURCE_DIR}/../mcu/assets@/assets\""
-        "SHELL:--preload-file \"${CMAKE_CURRENT_SOURCE_DIR}/assets/right@/assets/right\"")
+        "SHELL:--preload-file \"${CMAKE_CURRENT_SOURCE_DIR}/assets/right@/assets/right\""
+        "SHELL:--preload-file \"${CMAKE_CURRENT_SOURCE_DIR}/assets/skins@/assets/skins\"")
 else()
     target_link_libraries(revontuli-lvgl PRIVATE user32 gdi32 imm32)
 endif()
