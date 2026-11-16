@@ -1,0 +1,466 @@
+{
+  "frameSize": [
+    540,
+    360
+  ],
+  "framesPerSequence": "10 default; recline 25",
+  "format": "WebP",
+  "sequences": {
+    "window": {
+      "frames": [
+        "assets/sequences/window/00.webp",
+        "assets/sequences/window/01.webp",
+        "assets/sequences/window/02.webp",
+        "assets/sequences/window/03.webp",
+        "assets/sequences/window/04.webp",
+        "assets/sequences/window/05.webp",
+        "assets/sequences/window/06.webp",
+        "assets/sequences/window/07.webp",
+        "assets/sequences/window/08.webp",
+        "assets/sequences/window/09.webp"
+      ],
+      "kind": "position"
+    },
+    "shade": {
+      "frames": [
+        "assets/sequences/shade/00.webp",
+        "assets/sequences/shade/01.webp",
+        "assets/sequences/shade/02.webp",
+        "assets/sequences/shade/03.webp",
+        "assets/sequences/shade/04.webp",
+        "assets/sequences/shade/05.webp",
+        "assets/sequences/shade/06.webp",
+        "assets/sequences/shade/07.webp",
+        "assets/sequences/shade/08.webp",
+        "assets/sequences/shade/09.webp"
+      ],
+      "kind": "position"
+    },
+    "roof": {
+      "frames": [
+        "assets/sequences/roof/00.webp",
+        "assets/sequences/roof/01.webp",
+        "assets/sequences/roof/02.webp",
+        "assets/sequences/roof/03.webp",
+        "assets/sequences/roof/04.webp",
+        "assets/sequences/roof/05.webp",
+        "assets/sequences/roof/06.webp",
+        "assets/sequences/roof/07.webp",
+        "assets/sequences/roof/08.webp",
+        "assets/sequences/roof/09.webp"
+      ],
+      "kind": "position"
+    },
+    "light-aurora": {
+      "frames": [
+        "assets/sequences/light-aurora/00.webp",
+        "assets/sequences/light-aurora/01.webp",
+        "assets/sequences/light-aurora/02.webp",
+        "assets/sequences/light-aurora/03.webp",
+        "assets/sequences/light-aurora/04.webp",
+        "assets/sequences/light-aurora/05.webp",
+        "assets/sequences/light-aurora/06.webp",
+        "assets/sequences/light-aurora/07.webp",
+        "assets/sequences/light-aurora/08.webp",
+        "assets/sequences/light-aurora/09.webp"
+      ],
+      "kind": "position"
+    },
+    "light-lounge": {
+      "frames": [
+        "assets/sequences/light-lounge/00.webp",
+        "assets/sequences/light-lounge/01.webp",
+        "assets/sequences/light-lounge/02.webp",
+        "assets/sequences/light-lounge/03.webp",
+        "assets/sequences/light-lounge/04.webp",
+        "assets/sequences/light-lounge/05.webp",
+        "assets/sequences/light-lounge/06.webp",
+        "assets/sequences/light-lounge/07.webp",
+        "assets/sequences/light-lounge/08.webp",
+        "assets/sequences/light-lounge/09.webp"
+      ],
+      "kind": "position"
+    },
+    "light-club": {
+      "frames": [
+        "assets/sequences/light-club/00.webp",
+        "assets/sequences/light-club/01.webp",
+        "assets/sequences/light-club/02.webp",
+        "assets/sequences/light-club/03.webp",
+        "assets/sequences/light-club/04.webp",
+        "assets/sequences/light-club/05.webp",
+        "assets/sequences/light-club/06.webp",
+        "assets/sequences/light-club/07.webp",
+        "assets/sequences/light-club/08.webp",
+        "assets/sequences/light-club/09.webp"
+      ],
+      "kind": "position"
+    },
+    "light-cinema": {
+      "frames": [
+        "assets/sequences/light-cinema/00.webp",
+        "assets/sequences/light-cinema/01.webp",
+        "assets/sequences/light-cinema/02.webp",
+        "assets/sequences/light-cinema/03.webp",
+        "assets/sequences/light-cinema/04.webp",
+        "assets/sequences/light-cinema/05.webp",
+        "assets/sequences/light-cinema/06.webp",
+        "assets/sequences/light-cinema/07.webp",
+        "assets/sequences/light-cinema/08.webp",
+        "assets/sequences/light-cinema/09.webp"
+      ],
+      "kind": "position"
+    },
+    "heat": {
+      "frames": [
+        "assets/sequences/heat/00.webp",
+        "assets/sequences/heat/01.webp",
+        "assets/sequences/heat/02.webp",
+        "assets/sequences/heat/03.webp",
+        "assets/sequences/heat/04.webp",
+        "assets/sequences/heat/05.webp",
+        "assets/sequences/heat/06.webp",
+        "assets/sequences/heat/07.webp",
+        "assets/sequences/heat/08.webp",
+        "assets/sequences/heat/09.webp"
+      ],
+      "kind": "position"
+    },
+    "cool": {
+      "frames": [
+        "assets/sequences/cool/00.webp",
+        "assets/sequences/cool/01.webp",
+        "assets/sequences/cool/02.webp",
+        "assets/sequences/cool/03.webp",
+        "assets/sequences/cool/04.webp",
+        "assets/sequences/cool/05.webp",
+        "assets/sequences/cool/06.webp",
+        "assets/sequences/cool/07.webp",
+        "assets/sequences/cool/08.webp",
+        "assets/sequences/cool/09.webp"
+      ],
+      "kind": "position"
+    },
+    "massage": {
+      "frames": [
+        "assets/sequences/massage/00.webp",
+        "assets/sequences/massage/01.webp",
+        "assets/sequences/massage/02.webp",
+        "assets/sequences/massage/03.webp",
+        "assets/sequences/massage/04.webp",
+        "assets/sequences/massage/05.webp",
+        "assets/sequences/massage/06.webp",
+        "assets/sequences/massage/07.webp",
+        "assets/sequences/massage/08.webp",
+        "assets/sequences/massage/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "recline": {
+      "frames": [
+        "assets/sequences/recline-jpeg/seat_00.jpg",
+        "assets/sequences/recline-jpeg/seat_01.jpg",
+        "assets/sequences/recline-jpeg/seat_02.jpg",
+        "assets/sequences/recline-jpeg/seat_03.jpg",
+        "assets/sequences/recline-jpeg/seat_04.jpg",
+        "assets/sequences/recline-jpeg/seat_05.jpg",
+        "assets/sequences/recline-jpeg/seat_06.jpg",
+        "assets/sequences/recline-jpeg/seat_07.jpg",
+        "assets/sequences/recline-jpeg/seat_08.jpg",
+        "assets/sequences/recline-jpeg/seat_09.jpg",
+        "assets/sequences/recline-jpeg/seat_10.jpg",
+        "assets/sequences/recline-jpeg/seat_11.jpg",
+        "assets/sequences/recline-jpeg/seat_12.jpg",
+        "assets/sequences/recline-jpeg/seat_13.jpg",
+        "assets/sequences/recline-jpeg/seat_14.jpg",
+        "assets/sequences/recline-jpeg/seat_15.jpg",
+        "assets/sequences/recline-jpeg/seat_16.jpg",
+        "assets/sequences/recline-jpeg/seat_17.jpg",
+        "assets/sequences/recline-jpeg/seat_18.jpg",
+        "assets/sequences/recline-jpeg/seat_19.jpg",
+        "assets/sequences/recline-jpeg/seat_20.jpg",
+        "assets/sequences/recline-jpeg/seat_21.jpg",
+        "assets/sequences/recline-jpeg/seat_22.jpg",
+        "assets/sequences/recline-jpeg/seat_23.jpg",
+        "assets/sequences/recline-jpeg/seat_24.jpg"
+      ],
+      "kind": "position",
+      "frameSize": [
+        240,
+        240
+      ],
+      "format": "JPEG",
+      "frameCount": 25,
+      "source": "User-provided originals, byte-for-byte copies"
+    },
+    "airflow-face": {
+      "frames": [
+        "assets/sequences/airflow-face/00.webp",
+        "assets/sequences/airflow-face/01.webp",
+        "assets/sequences/airflow-face/02.webp",
+        "assets/sequences/airflow-face/03.webp",
+        "assets/sequences/airflow-face/04.webp",
+        "assets/sequences/airflow-face/05.webp",
+        "assets/sequences/airflow-face/06.webp",
+        "assets/sequences/airflow-face/07.webp",
+        "assets/sequences/airflow-face/08.webp",
+        "assets/sequences/airflow-face/09.webp"
+      ],
+      "kind": "loop",
+      "frameSize": [
+        540,
+        360
+      ]
+    },
+    "airflow-body": {
+      "frames": [
+        "assets/sequences/airflow-body/00.webp",
+        "assets/sequences/airflow-body/01.webp",
+        "assets/sequences/airflow-body/02.webp",
+        "assets/sequences/airflow-body/03.webp",
+        "assets/sequences/airflow-body/04.webp",
+        "assets/sequences/airflow-body/05.webp",
+        "assets/sequences/airflow-body/06.webp",
+        "assets/sequences/airflow-body/07.webp",
+        "assets/sequences/airflow-body/08.webp",
+        "assets/sequences/airflow-body/09.webp"
+      ],
+      "kind": "loop",
+      "frameSize": [
+        540,
+        360
+      ]
+    },
+    "airflow-feet": {
+      "frames": [
+        "assets/sequences/airflow-feet/00.webp",
+        "assets/sequences/airflow-feet/01.webp",
+        "assets/sequences/airflow-feet/02.webp",
+        "assets/sequences/airflow-feet/03.webp",
+        "assets/sequences/airflow-feet/04.webp",
+        "assets/sequences/airflow-feet/05.webp",
+        "assets/sequences/airflow-feet/06.webp",
+        "assets/sequences/airflow-feet/07.webp",
+        "assets/sequences/airflow-feet/08.webp",
+        "assets/sequences/airflow-feet/09.webp"
+      ],
+      "kind": "loop",
+      "frameSize": [
+        540,
+        360
+      ]
+    },
+    "airflow-face-vent": {
+      "frames": [
+        "assets/sequences/airflow-face-vent/00.webp",
+        "assets/sequences/airflow-face-vent/01.webp",
+        "assets/sequences/airflow-face-vent/02.webp",
+        "assets/sequences/airflow-face-vent/03.webp",
+        "assets/sequences/airflow-face-vent/04.webp",
+        "assets/sequences/airflow-face-vent/05.webp",
+        "assets/sequences/airflow-face-vent/06.webp",
+        "assets/sequences/airflow-face-vent/07.webp",
+        "assets/sequences/airflow-face-vent/08.webp",
+        "assets/sequences/airflow-face-vent/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "airflow-body-vent": {
+      "frames": [
+        "assets/sequences/airflow-body-vent/00.webp",
+        "assets/sequences/airflow-body-vent/01.webp",
+        "assets/sequences/airflow-body-vent/02.webp",
+        "assets/sequences/airflow-body-vent/03.webp",
+        "assets/sequences/airflow-body-vent/04.webp",
+        "assets/sequences/airflow-body-vent/05.webp",
+        "assets/sequences/airflow-body-vent/06.webp",
+        "assets/sequences/airflow-body-vent/07.webp",
+        "assets/sequences/airflow-body-vent/08.webp",
+        "assets/sequences/airflow-body-vent/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "airflow-feet-vent": {
+      "frames": [
+        "assets/sequences/airflow-feet-vent/00.webp",
+        "assets/sequences/airflow-feet-vent/01.webp",
+        "assets/sequences/airflow-feet-vent/02.webp",
+        "assets/sequences/airflow-feet-vent/03.webp",
+        "assets/sequences/airflow-feet-vent/04.webp",
+        "assets/sequences/airflow-feet-vent/05.webp",
+        "assets/sequences/airflow-feet-vent/06.webp",
+        "assets/sequences/airflow-feet-vent/07.webp",
+        "assets/sequences/airflow-feet-vent/08.webp",
+        "assets/sequences/airflow-feet-vent/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "climate-cool-face": {
+      "frames": [
+        "assets/sequences/climate-cool-face/00.webp",
+        "assets/sequences/climate-cool-face/01.webp",
+        "assets/sequences/climate-cool-face/02.webp",
+        "assets/sequences/climate-cool-face/03.webp",
+        "assets/sequences/climate-cool-face/04.webp",
+        "assets/sequences/climate-cool-face/05.webp",
+        "assets/sequences/climate-cool-face/06.webp",
+        "assets/sequences/climate-cool-face/07.webp",
+        "assets/sequences/climate-cool-face/08.webp",
+        "assets/sequences/climate-cool-face/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "climate-cool-body": {
+      "frames": [
+        "assets/sequences/climate-cool-body/00.webp",
+        "assets/sequences/climate-cool-body/01.webp",
+        "assets/sequences/climate-cool-body/02.webp",
+        "assets/sequences/climate-cool-body/03.webp",
+        "assets/sequences/climate-cool-body/04.webp",
+        "assets/sequences/climate-cool-body/05.webp",
+        "assets/sequences/climate-cool-body/06.webp",
+        "assets/sequences/climate-cool-body/07.webp",
+        "assets/sequences/climate-cool-body/08.webp",
+        "assets/sequences/climate-cool-body/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "climate-cool-feet": {
+      "frames": [
+        "assets/sequences/climate-cool-feet/00.webp",
+        "assets/sequences/climate-cool-feet/01.webp",
+        "assets/sequences/climate-cool-feet/02.webp",
+        "assets/sequences/climate-cool-feet/03.webp",
+        "assets/sequences/climate-cool-feet/04.webp",
+        "assets/sequences/climate-cool-feet/05.webp",
+        "assets/sequences/climate-cool-feet/06.webp",
+        "assets/sequences/climate-cool-feet/07.webp",
+        "assets/sequences/climate-cool-feet/08.webp",
+        "assets/sequences/climate-cool-feet/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "climate-warm-face": {
+      "frames": [
+        "assets/sequences/climate-warm-face/00.webp",
+        "assets/sequences/climate-warm-face/01.webp",
+        "assets/sequences/climate-warm-face/02.webp",
+        "assets/sequences/climate-warm-face/03.webp",
+        "assets/sequences/climate-warm-face/04.webp",
+        "assets/sequences/climate-warm-face/05.webp",
+        "assets/sequences/climate-warm-face/06.webp",
+        "assets/sequences/climate-warm-face/07.webp",
+        "assets/sequences/climate-warm-face/08.webp",
+        "assets/sequences/climate-warm-face/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "climate-warm-body": {
+      "frames": [
+        "assets/sequences/climate-warm-body/00.webp",
+        "assets/sequences/climate-warm-body/01.webp",
+        "assets/sequences/climate-warm-body/02.webp",
+        "assets/sequences/climate-warm-body/03.webp",
+        "assets/sequences/climate-warm-body/04.webp",
+        "assets/sequences/climate-warm-body/05.webp",
+        "assets/sequences/climate-warm-body/06.webp",
+        "assets/sequences/climate-warm-body/07.webp",
+        "assets/sequences/climate-warm-body/08.webp",
+        "assets/sequences/climate-warm-body/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "climate-warm-feet": {
+      "frames": [
+        "assets/sequences/climate-warm-feet/00.webp",
+        "assets/sequences/climate-warm-feet/01.webp",
+        "assets/sequences/climate-warm-feet/02.webp",
+        "assets/sequences/climate-warm-feet/03.webp",
+        "assets/sequences/climate-warm-feet/04.webp",
+        "assets/sequences/climate-warm-feet/05.webp",
+        "assets/sequences/climate-warm-feet/06.webp",
+        "assets/sequences/climate-warm-feet/07.webp",
+        "assets/sequences/climate-warm-feet/08.webp",
+        "assets/sequences/climate-warm-feet/09.webp"
+      ],
+      "kind": "loop"
+    },
+    "light-relax": {
+      "frames": [
+        "assets/sequences/light-relax/00.webp",
+        "assets/sequences/light-relax/01.webp",
+        "assets/sequences/light-relax/02.webp",
+        "assets/sequences/light-relax/03.webp",
+        "assets/sequences/light-relax/04.webp",
+        "assets/sequences/light-relax/05.webp",
+        "assets/sequences/light-relax/06.webp",
+        "assets/sequences/light-relax/07.webp",
+        "assets/sequences/light-relax/08.webp",
+        "assets/sequences/light-relax/09.webp"
+      ],
+      "kind": "intensity"
+    },
+    "home-heat": {
+      "frames": [
+        "assets/sequences/home-heat/00.webp",
+        "assets/sequences/home-heat/01.webp",
+        "assets/sequences/home-heat/02.webp",
+        "assets/sequences/home-heat/03.webp",
+        "assets/sequences/home-heat/04.webp",
+        "assets/sequences/home-heat/05.webp",
+        "assets/sequences/home-heat/06.webp",
+        "assets/sequences/home-heat/07.webp",
+        "assets/sequences/home-heat/08.webp",
+        "assets/sequences/home-heat/09.webp"
+      ],
+      "kind": "intensity"
+    },
+    "home-heat-fx-1": {
+      "frames": [
+        "assets/sequences/home-heat-fx-1/00.webp",
+        "assets/sequences/home-heat-fx-1/01.webp",
+        "assets/sequences/home-heat-fx-1/02.webp",
+        "assets/sequences/home-heat-fx-1/03.webp",
+        "assets/sequences/home-heat-fx-1/04.webp",
+        "assets/sequences/home-heat-fx-1/05.webp",
+        "assets/sequences/home-heat-fx-1/06.webp",
+        "assets/sequences/home-heat-fx-1/07.webp",
+        "assets/sequences/home-heat-fx-1/08.webp",
+        "assets/sequences/home-heat-fx-1/09.webp"
+      ],
+      "kind": "loop-overlay"
+    },
+    "home-heat-fx-2": {
+      "frames": [
+        "assets/sequences/home-heat-fx-2/00.webp",
+        "assets/sequences/home-heat-fx-2/01.webp",
+        "assets/sequences/home-heat-fx-2/02.webp",
+        "assets/sequences/home-heat-fx-2/03.webp",
+        "assets/sequences/home-heat-fx-2/04.webp",
+        "assets/sequences/home-heat-fx-2/05.webp",
+        "assets/sequences/home-heat-fx-2/06.webp",
+        "assets/sequences/home-heat-fx-2/07.webp",
+        "assets/sequences/home-heat-fx-2/08.webp",
+        "assets/sequences/home-heat-fx-2/09.webp"
+      ],
+      "kind": "loop-overlay"
+    },
+    "home-heat-fx-3": {
+      "frames": [
+        "assets/sequences/home-heat-fx-3/00.webp",
+        "assets/sequences/home-heat-fx-3/01.webp",
+        "assets/sequences/home-heat-fx-3/02.webp",
+        "assets/sequences/home-heat-fx-3/03.webp",
+        "assets/sequences/home-heat-fx-3/04.webp",
+        "assets/sequences/home-heat-fx-3/05.webp",
+        "assets/sequences/home-heat-fx-3/06.webp",
+        "assets/sequences/home-heat-fx-3/07.webp",
+        "assets/sequences/home-heat-fx-3/08.webp",
+        "assets/sequences/home-heat-fx-3/09.webp"
+      ],
+      "kind": "loop-overlay"
+    }
+  },
+  "note": "Concept sequences from fixed raster layers. Recline and leg-rest are 2D motion studies, not mechanically validated geometry. Playback is simulated, not vehicle feedback.",
+  "totalFrames": 295
+}

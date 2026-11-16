@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revontuli · LVGL Seat demo</title>
+<style>
+body{margin:0;background:#0b1414;color:#edf1e7;font:16px/1.5 system-ui}main{max-width:1050px;margin:auto;padding:24px;display:grid;grid-template-columns:1fr minmax(260px,480px);gap:32px}canvas{display:block;width:100%;height:auto;border-radius:18px;touch-action:none}a{color:#9be3c1}p{color:#bed0c8}@media(max-width:730px){main{grid-template-columns:1fr;max-width:480px}}
+</style>
+<main><section><a href="../">← Revontuli</a><h1>Comfort → Seat</h1><p>LVGL and C++ running in your browser through WebAssembly.</p><p>Try Cooling 2, toggle massage on and off, then switch seats. The status line below the controls shows the confirmed C++ state.</p><p>Seat controls and effects are simulated. <a href="../design/">Explore all five screens in the design reference.</a></p><p id="status" role="status">Loading the LVGL demo…</p></section><canvas width="480" height="800" aria-label="Interactive Revontuli seat controller"></canvas></main>
+<script>
+window.seatPointer = [0, 0, 0];
+const canvas = document.querySelector('canvas');
+function updatePointer(event) {
+    const rect = canvas.getBoundingClientRect();
+    seatPointer[0] = Math.max(0, Math.min(479, Math.floor((event.clientX - rect.left) * 480 / rect.width)));
+    seatPointer[1] = Math.max(0, Math.min(799, Math.floor((event.clientY - rect.top) * 800 / rect.height)));
+}
+canvas.addEventListener('pointerdown', event => {
+    canvas.setPointerCapture(event.pointerId);
+    updatePointer(event);
+    seatPointer[2] = 1;
+});
+canvas.addEventListener('pointermove', updatePointer);
+for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
+    canvas.addEventListener(type, () => { seatPointer[2] = 0; });
+}
+var Module = {
+    onRuntimeInitialized() { document.querySelector('#status').textContent = 'Ready'; },
+    onAbort() { document.querySelector('#status').textContent = 'The demo could not start. Try refreshing the page.'; }
+};
+</script>
+<script async src="revontuli-lvgl.js"></script>
+</html>

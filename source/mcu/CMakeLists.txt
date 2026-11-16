@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.21)
+project(RevontuliSeat LANGUAGES C CXX ASM)
+set(CMAKE_CXX_STANDARD 17)
+find_package(Qul REQUIRED)
+qul_add_target(revontuli-seat QML_PROJECT Revontuli.qmlproject GENERATE_ENTRYPOINT SeatModel.cpp)
+app_target_setup_os(revontuli-seat)
